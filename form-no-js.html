@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form - No JavaScript</title>
+    <script src="theme-toggle.js"></script>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --form-bg: #f9f9f9;
+            --border-color: #cccccc;
+            --error-color: #d32f2f;
+            --success-color: #388e3c;
+            --focus-color: #1976d2;
+            --required-color: #d32f2f;
+            --invalid-bg: #ffebee;
+            --valid-bg: #e8f5e9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --form-bg: #2a2a2a;
+            --border-color: #444444;
+            --error-color: #ef5350;
+            --success-color: #66bb6a;
+            --focus-color: #42a5f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--form-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--required-color);
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--focus-color);
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        input:invalid:not(:placeholder-shown),
+        textarea:invalid:not(:placeholder-shown) {
+            border-color: var(--error-color);
+            background-color: var(--invalid-bg);
+        }
+
+        input:valid:not(:placeholder-shown),
+        textarea:valid:not(:placeholder-shown) {
+            border-color: var(--success-color);
+            background-color: var(--valid-bg);
+        }
+
+        input:required,
+        textarea:required {
+            border-left: 4px solid var(--required-color);
+        }
+
+        button[type="submit"] {
+            padding: 0.875rem 2rem;
+            background-color: var(--focus-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            justify-self: start;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1565c0;
+            transform: translateY(-1px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        button[type="submit"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+        }
+
+        .output-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        output {
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        output[name="error-output"] {
+            background-color: var(--invalid-bg);
+            color: var(--error-color);
+            border-left: 4px solid var(--error-color);
+        }
+
+        output[name="info-output"] {
+            background-color: var(--valid-bg);
+            color: var(--success-color);
+            border-left: 4px solid var(--success-color);
+        }
+
+        output:empty {
+            display: none;
+        }
+
+        @media (prefers-contrast: high) {
+            input,
+            textarea,
+            select {
+                border-width: 3px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: -0.25rem;
+        }
+
+        [data-theme="dark"] .helper-text {
+            color: #999;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--focus-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        #theme-toggle:hover {
+            background-color: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #theme-toggle:active {
+            transform: translateY(0);
+        }
+
+        #theme-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.3);
+        }
+
+        .theme-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .theme-text {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            #theme-toggle {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .theme-text {
+                display: none;
+            }
+
+            .theme-icon {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Dark Mode</span>
+    </button>
+
+    <noscript>
+        <style>
+            #theme-toggle {
+                display: none;
+            }
+        </style>
+    </noscript>
+
+    <div class="container">
+        <h1>Contact Form</h1>
+
+        <form action="https://httpbin.org/post" method="POST">
+            <input type="hidden" name="possible_bot" value="true">
+
+            <div class="form-field">
+                <label for="name" class="required">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    pattern="^[A-Za-z\s\-']+$"
+                    placeholder="John Doe"
+                    aria-required="true"
+                >
+                <span class="helper-text">Please enter your full name (letters, spaces, hyphens, and apostrophes only)</span>
+            </div>
+
+            <div class="form-field">
+                <label for="email" class="required">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="john.doe@example.com"
+                    aria-required="true"
+                >
+                <span class="helper-text">We'll never share your email with anyone else</span>
+            </div>
+
+            <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    pattern="^[\d\s\-\+\(\)]+$"
+                    minlength="10"
+                    maxlength="20"
+                    placeholder="(123) 456-7890"
+                >
+                <span class="helper-text">Optional - Include country code if international</span>
+            </div>
+
+            <div class="form-field">
+                <label for="subject" class="required">Subject</label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    minlength="3"
+                    maxlength="100"
+                    pattern="^[A-Za-z0-9\s\-,\.!?]+$"
+                    placeholder="Inquiry about..."
+                    aria-required="true"
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="comments" class="required">Comments</label>
+                <textarea
+                    id="comments"
+                    name="comments"
+                    required
+                    minlength="10"
+                    maxlength="500"
+                    placeholder="Please share your message here..."
+                    aria-required="true"
+                ></textarea>
+                <span class="helper-text">Minimum 10 characters, maximum 500 characters</span>
+            </div>
+
+            <div class="form-field">
+                <label for="contact-preference">Preferred Contact Method</label>
+                <select id="contact-preference" name="contact_preference">
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="either">Either</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Form</button>
+
+            <div class="output-container">
+                <output name="error-output" for="name email subject comments" aria-live="polite"></output>
+                <output name="info-output" for="name email subject comments" aria-live="polite"></output>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

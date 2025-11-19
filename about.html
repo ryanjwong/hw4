@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <title>About Ryan Wong</title>
     <meta name="description" content="About Ryan Wong">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="view-transitions.css">
+    <script src="theme-toggle.js"></script>
+    <script src="view-transitions.js"></script>
     <script src="hello-world.js" defer></script>
 </head>
 <body>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Dark Mode</span>
+    </button>
+
+    <noscript>
+        <style>
+            #theme-toggle {
+                display: none;
+            }
+        </style>
+    </noscript>
 
     <header>
         <h1>Ryan Jia-Ming Wong</h1> [cite: 1]

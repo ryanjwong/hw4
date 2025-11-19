@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>HTML Tag Experiments</title>
-    <noscript>This page requires JavaScript for some elements.</noscript> </head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="view-transitions.css">
+    <script src="theme-toggle.js"></script>
+    <script src="view-transitions.js"></script>
+    <noscript>This page requires JavaScript for some elements.</noscript>
+</head>
 <body>
+    <button id="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-text">Dark Mode</span>
+    </button>
+
+    <noscript>
+        <style>
+            #theme-toggle {
+                display: none;
+            }
+        </style>
+    </noscript>
+
     <header>
         <h1>HTML Tag Experiments</h1>
         <p>This page demonstrates the usage of specific HTML tags as required by the assignment.</p>
