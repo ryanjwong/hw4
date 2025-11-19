@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ryan Wong's Projects</title>
+    <meta name="description" content="Projects by Ryan Wong">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        project-card { /* Semantic CSS Custom Element Style */
+            display: block;
+            border: 1px dashed grey;
+            padding: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
+    <script src="hello-world.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Ryan Jia-Ming Wong</h1> [cite: 1]
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>My Projects</h1>
+        
+        <project-card> <article>
+                <h2>Atlas-CLI (Go)</h2> [cite: 34]
+                <p><em>July 2025 - Present</em></p> [cite: 35]
+                <p>
+                    Wrote a CLI using Go to manage infrastructure across different providers (AWS, GCP, minikube). [cite: 36] Installation and configuration of ArgoCD, Prometheus, and Grafana will be automated through Ansible playbooks. [cite: 36] GitOps will be set up via ArgoCD and automatic creation of Github Repositories alongside Github Actions. [cite: 36]
+                </p>
+            </article>
+        </project-card>
+
+        <project-card>
+            <article>
+                <h2>Anonymous Web Services (NodeJS)</h2> [cite: 37]
+                <p><em>Jan 2023 - Dec 2023</em></p> [cite: 37]
+                <p>
+                    Created a pseudo AWS Lambda code execution platform, where clients connect to hosts through UDP holepunching. [cite: 37] This project integrated the hyperswarm library to establish a secure P2P connection for sending code via a custom CLI. [cite: 37]
+                </p>
+            </article>
+        </project-card>
+    </main>
+
+    <footer>
+        <span>&copy; 2025 Ryan Wong</span><br>
+        <a href="https://github.com/ryanjwong">GitHub</a> [cite: 2] | 
+        <a href="https://www.linkedin.com/in/ryanjmwong/">LinkedIn</a> [cite: 7] |
+        <a href="experiments.html">HTML Experiments Page</a>
+        <hello-world></hello-world>
+    </footer>
+
+</body>
+</html>

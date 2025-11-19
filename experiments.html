@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Tag Experiments</title>
+    <noscript>This page requires JavaScript for some elements.</noscript> </head>
+<body>
+    <header>
+        <h1>HTML Tag Experiments</h1>
+        <p>This page demonstrates the usage of specific HTML tags as required by the assignment.</p>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Media Elements</h2>
+            
+            <h3>Picture Element</h3>
+            <picture> <source srcset="500x500.jpg" media="(min-width: 600px)"> <img src="https://via.placeholder.com/150" alt="A placeholder image">
+            </picture>
+
+            <h3>Audio & Video</h3>
+            <audio controls> <source src="Demo Track 2.mp3" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+            <br>
+            <video width="320" height="240" controls> <source src="videoplayback.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section>
+            <h2>Interactive & Template Elements</h2>
+            <p>Progress: <progress value="70" max="100">70%</progress></p> <h3>Canvas Element</h3>
+            <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas> <h3>Template Element</h3>
+            <template> <h2>Template Content</h2>
+                <p>This content is hidden inside a template tag.</p>
+            </template>
+        </section>
+
+        <section>
+            <h2>Other Elements</h2>
+            <h3>IFrame</h3>
+            <iframe src="https://www.openstreetmap.org/export/embed.html" width="300" height="200"></iframe> <h3>SVG</h3>
+            <svg width="100" height="100"> <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+            </svg>
+        </section>
+
+        <section>
+            <h2>Extra Credit: MathML</h2>
+            <p>
+                This demonstrates MathML for Einstein's formula: [cite: 116]
+                <math>
+                    <mi>E</mi>
+                    <mo>=</mo>
+                    <mi>m</mi>
+                    <msup>
+                        <mi>c</mi>
+                        <mn>2</mn>
+                    </msup>
+                </math>
+            </p>
+            <p>
+                <strong>Reason for recent adoption:</strong> For a long time, MathML lacked cross-browser support, most notably in Google Chrome. [cite: 118] Without support in the world's most popular browser, developers could not reliably use it for public-facing websites. [cite: 118]
+            </p>
+        </section>
+    </main>
+
+    <script>
+        const c = document.getElementById("myCanvas");
+        const ctx = c.getContext("2d");
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+    </script>
+</body>
+</html>
